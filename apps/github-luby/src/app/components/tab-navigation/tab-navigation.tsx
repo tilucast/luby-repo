@@ -14,11 +14,12 @@ const StyledTabNavigation = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem !important;
+  padding: 2rem;
   border-radius: 16px 16px 0 0;
+  max-height: 10vh;
 
   svg{
-    width: 50px;
+    width: 5rem;
   }
 
   article a{

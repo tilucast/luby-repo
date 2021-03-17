@@ -3,19 +3,21 @@ import { useHistory, useLocation } from 'react-router';
 
 import styled from 'styled-components';
 import {ReactComponent as ExitIcon} from '../../../assets/exit.svg'
+import { styles } from '../../common/styles';
+import YellowThing from '../../components/yellow-thing/yellow-thing';
 import { UserContext } from '../../UserContext';
 
 const StyledUserProfile = styled.div`
-  
+  height: 100%;
 
   nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 2rem;
+    padding: 3rem 2rem;
 
     h3{
-      font-size: 20px;
+      font-size: 2rem;
     }
 
     a{
@@ -32,7 +34,7 @@ const StyledUserProfile = styled.div`
       }
 
       svg{
-        width: 32px;
+        width: 3.2rem;
         fill: var(--red);
         margin-left: 5px;
       }
@@ -43,21 +45,11 @@ const StyledUserProfile = styled.div`
     display: grid;
     place-items: center;
 
-    .name{
-      font-size: 32px;
-      color: var(--white);
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-
-    .info{
-      font-size: 20px;
-      color: var(--light-gray);
-    }
+    ${styles}
 
     img{
-      width: 160px;
-      height: 160px;
+      width: 16rem;
+      height: 16rem;
       border-radius: 100%;
       border: 4px solid var(--white);
     }
@@ -102,7 +94,7 @@ const StyledUserProfile = styled.div`
         }
 
         span{
-          font-size: 1rem;
+          font-size: 1.5rem;
         }
       }
 
@@ -121,26 +113,23 @@ const StyledUserProfile = styled.div`
       }
     }
 
-    .yellow-thing{
-      width: 15px;
-      height: 40px;
-      border-radius: 0 8px 8px 0;
-      background-color: var(--yellow);
-      margin-right: 20px;
+    .dull-container{
+      display: flex;
+      flex-direction: column;
     }
+    
   }
   
 `;
 
 export function UserProfile() {
-  const location = useLocation()
   const history = useHistory()
   
   const [user, setUser] = useContext(UserContext)
-
+  
   const exitApp = () => {
     history.push("")
-    setUser({})
+    setUser(null)
   }
   
   return (
@@ -159,9 +148,7 @@ export function UserProfile() {
 
         <article className="user-info">
 
-          <div className="yellow-thing">
-
-          </div>
+          <YellowThing />
 
           <div>
             <span className="name">{user.name}</span>
@@ -190,9 +177,7 @@ export function UserProfile() {
 
         <article className="bio">
 
-          <div className="yellow-thing">
-
-          </div>
+          <YellowThing />
 
           <div>
             <span className="name">bio</span>

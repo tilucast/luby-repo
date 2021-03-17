@@ -1,29 +1,15 @@
 import React, { useState, createContext } from 'react'
+import { UserProps } from './common/interfaces'
 
-const UserContext = createContext({})
+const UserContext = createContext(null)
 
-const UserProvider = (props) => {
+const UserProvider = ({children}) => {
 
-    const [user, setUser] = useState({})
-
-    const fetchUser = async () => {
-        try {
-            const fetchUser = fetch(`https://api.github.com/users/tilucast`, {headers: {Accept: 'application/vnd.github.v3+json'}});
-        
-            const data = (await fetchUser).json()
-        
-            const actualUserData = await data
-
-            setUser(actualUserData)
-        
-        } catch (error) {
-        console.error(error)
-        }
-    }
+    const [user, setUser] = useState<UserProps | null>(null)
 
     return (
         <UserContext.Provider value={[user, setUser]}>
-            {props.children}
+            {children}
         </UserContext.Provider>
     )
 }

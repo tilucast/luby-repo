@@ -9,36 +9,10 @@ import Followers from './pages/followers/followers';
 import Following from './pages/following/following';
 import TabNavigation from './components/tab-navigation/tab-navigation';
 import { UserProvider } from './UserContext';
+import ProtectedRoute from './ProtectedRoute';
+import GlobalStyle from './globalStyles';
 
 const StyledApp = styled.div`
-  
-  --dark: rgb(41, 41, 41);
-  --yellow: rgb(255, 206, 0);
-  --red: rgb(208, 52, 52);
-  --white: rgb(255, 255, 255);
-  --green: rgb(99, 191, 31);
-  --dark-gray: rgb(56, 56, 56);
-  --light-gray: rgb(201, 201, 201);
-
-  background-color: var(--dark);
-  color: var(--white);
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  },
-
-  html {
-    font-size: 62.5%;
-   
-  },
-
-  body, html{
-    height: 100%;
-    width: 100%;
-    font-family: 'Roboto', sans-serif;
-  }
   
 `;
 
@@ -49,27 +23,30 @@ const UserScreens = () => {
 
         <Route path="/:id/profile">
           <UserProfile />
+          <TabNavigation />
         </Route>
 
         <Route path="/:id/repos">
-          <Repos />
+          <ProtectedRoute component={Repos} />
+          <TabNavigation />
         </Route>
 
         <Route path="/:id/followers">
           <Followers />
+          <TabNavigation />
         </Route>
 
         <Route path="/:id/following">
           <Following />
+          <TabNavigation />
         </Route>
 
         <Route path="/" exact>
-          <Home />
+          <App />
         </Route>
 
       </Switch>
 
-      <TabNavigation />
     </BrowserRouter>
   )
 }
@@ -78,13 +55,14 @@ export function App() {
   return (
     <BrowserRouter>
 
-      <StyledApp>
+        <GlobalStyle />
         <Switch>
 
           <UserProvider>
             
+            
             <Route path="/:id/profile">
-              <UserScreens />
+              <ProtectedRoute component={UserScreens} />
             </Route>
 
             <Route path="/" exact>
@@ -94,8 +72,7 @@ export function App() {
           </UserProvider>
 
         </Switch>
-      </StyledApp>
-
+      
     </BrowserRouter>
   );
 }

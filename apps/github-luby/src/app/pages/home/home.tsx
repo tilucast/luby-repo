@@ -1,10 +1,11 @@
-import React, { FormEvent, useCallback, useContext, useState } from 'react';
+import React, { ContextType, FormEvent, useCallback, useContext, useState } from 'react';
 
 import styled from 'styled-components';
 import { ReactComponent as Logo } from '../../../assets/github.svg';
 import { ReactComponent as ArrowRight } from '../../../assets/arrowright.svg';
 import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
+import { ContextProps, UserProps } from '../../common/interfaces';
 
 const StyledHome = styled.div`
   display: grid;
@@ -12,16 +13,16 @@ const StyledHome = styled.div`
   height: 100vh;
   
   section{
-    width: 30%;
-    min-width: 27rem;
+    width: 40%;
+    min-width: 35rem;
     display: grid;
     place-items: center;
     padding: 4rem 4rem;
   }
 
   .logo-svg {
-    width: 8rem;
-    height: 8rem;
+    width: 15rem;
+    height: 15rem;
   }
 
   form {
@@ -40,7 +41,7 @@ const StyledHome = styled.div`
       background-color: var(--white);
       border-radius: 8px;
       color: var(--dark);
-      font-size: 1rem;
+      font-size: 1.8rem;
       font-weight: 600;
 
       &::placeholder{
@@ -51,8 +52,8 @@ const StyledHome = styled.div`
     button{
       background-color: var(--yellow);
       border: 0;
-      padding: .7rem 1rem;
-      font-size: 1.1rem;
+      padding: 1rem 1rem;
+      font-size: 1.8rem;
       color: var(--dark);
       font-weight: 600;
       border-radius: 8px;
@@ -92,7 +93,7 @@ export function Home() {
 
   const [user, setUser] = useState('')
 
-  const [y, setY] = useContext(UserContext)
+  const [_, setUserContext] = useContext(UserContext)
 
   const callbackUser = async (user: string) => {
     try {
@@ -103,12 +104,12 @@ export function Home() {
       const actualUserData = await data
 
       if(actualUserData.message !== 'Not Found'){
+        setUserContext(actualUserData)
         history.push({
           pathname: `/${actualUserData.id}/profile`, 
           
         })
 
-        setY(actualUserData)
       }
       
     } catch (error) {

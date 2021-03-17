@@ -1,16 +1,20 @@
 import React, { useContext } from 'react'
-import { useHistory } from 'react-router'
+import { Redirect } from 'react-router'
 import { UserContext } from './UserContext'
 
-const ProtectedRoute = ({component}): React.ReactNode | void => {
+interface ProtectedRouteProps {
+    component: React.ReactNode | void
+    path: string
+}
+
+const ProtectedRoute = ({component}) => {
 
     const [user] = useContext(UserContext)
-    const history = useHistory()
     const Component = component
 
     return user ? (
         <Component />
-    ) : history.push("/")
+    ) : <Redirect to={{pathname: "/"}}/>
 }
 
 export default ProtectedRoute
