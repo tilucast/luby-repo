@@ -11,6 +11,11 @@ const GlobalStyle =  createGlobalStyle`
     --light-gray: rgb(201, 201, 201);
 }
 
+::selection{
+  background-color: var(--yellow);
+  color: var(--white);
+}
+
 #root{
   height: 90vh;
 }

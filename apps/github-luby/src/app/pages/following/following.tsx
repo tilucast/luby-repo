@@ -1,18 +1,43 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import styled from 'styled-components';
-
-/* eslint-disable-next-line */
-export interface FollowingProps {}
+import { fetchUserStuff } from '../../common/fetchUserStuff';
+import SimpleNavbar from '../../components/simple-navbar/simple-navbar';
+import UserTile from '../../components/user-tile/user-tile';
+import { UserContext } from '../../UserContext';
 
 const StyledFollowing = styled.div`
-  color: pink;
+  section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
-export function Following(props: FollowingProps) {
+export function Following() {
+
+  const [user, _] = useContext(UserContext)
+
+  const [following, setFollowing] = useState([{}])
+
+  useEffect(() => {
+    fetchUserStuff(`https://api.github.com/users/${user.login}/following`)
+      .then(data => setFollowing(data)).catch(error => console.error(error))
+  }, [])
+
+  console.log(following);
+
   return (
     <StyledFollowing>
-      <h1>Welcome to Following!</h1>
+      <SimpleNavbar  objectProps={{number: following.length, title: 'seguindo'}}/>
+
+      <section>
+        {following.map((followed,index) => (
+          <UserTile key={followed.id + index} userObject={followed} />
+        ))}
+      </section>
+      
     </StyledFollowing>
   );
 }

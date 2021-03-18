@@ -9,31 +9,12 @@ import {ReactComponent as ClosedLock} from '../../../assets/lock.svg'
 import { fetchUserStuff } from '../../common/fetchUserStuff';
 import { styles } from '../../common/styles';
 import YellowThing from '../../components/yellow-thing/yellow-thing';
+import { useHistory } from 'react-router';
+import SimpleNavbar from '../../components/simple-navbar/simple-navbar';
 
 const StyledRepos = styled.div`
 
-  nav{
-    padding: 2rem 2rem;
-    display: flex;
-    align-items: center;
-    color: var(--white);
-
-    svg{
-      transform: rotate(180deg);
-      width: 32px;
-    }
-
-    svg path{
-      fill: var(--white);
-    }
-
-    span{
-      display: block;
-      width: 100%;
-      font-size: 2rem;
-      text-align: center;
-    }
-  }
+  
 
   section {
     
@@ -111,10 +92,8 @@ export function Repos() {
 
   return (
     <StyledRepos>
-      <nav>
-        <ArrowRight />
-        <span>{repos.length} repositórios</span>
-      </nav>
+
+      <SimpleNavbar objectProps={{number: repos.length, title: 'repositórios'}}/>
 
       <section>
 

@@ -3,9 +3,8 @@ import React, { ContextType, FormEvent, useCallback, useContext, useState } from
 import styled from 'styled-components';
 import { ReactComponent as Logo } from '../../../assets/github.svg';
 import { ReactComponent as ArrowRight } from '../../../assets/arrowright.svg';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
-import { ContextProps, UserProps } from '../../common/interfaces';
 
 const StyledHome = styled.div`
   display: grid;

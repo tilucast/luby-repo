@@ -2,6 +2,16 @@
 
 # GithubLuby
 
+Olá.
+./codechallenges => contém o desafio lógico
+./apps/github-luby => contém o desafio React
+
+Gerei o projeto react com Nx. Para rodar o servidor, instale a CLI do Nx, ou use npx: ````  npx nx serve ````, porta 4200.
+
+Também estou usando Typescript. Entretanto, não criei interfaces e types para a maioria dos objetos usados na aplicação.
+
+-----------------------------------------
+
 This project was generated using [Nx](https://nx.dev).
 
 <p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
