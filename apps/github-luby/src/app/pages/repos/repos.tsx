@@ -97,7 +97,7 @@ export function Repos() {
 
       <section>
 
-        {repos.map((repo, index) => (
+        {repos.map((repo: any, index) => (
           <article key={repo.id + index}>
 
             <YellowThing />

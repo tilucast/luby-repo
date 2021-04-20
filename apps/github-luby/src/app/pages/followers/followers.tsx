@@ -34,7 +34,7 @@ export function Followers() {
       <SimpleNavbar objectProps={{number: followers.length, title: 'seguidores'}} />
 
       <section>
-        {followers.map((follower, index) => (
+        {followers.map((follower: any, index) => (
           
           <UserTile key={follower.id +index} userObject={follower}/>
 

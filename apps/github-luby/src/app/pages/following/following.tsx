@@ -33,7 +33,7 @@ export function Following() {
       <SimpleNavbar  objectProps={{number: following.length, title: 'seguindo'}}/>
 
       <section>
-        {following.map((followed,index) => (
+        {following.map((followed: any,index) => (
           <UserTile key={followed.id + index} userObject={followed} />
         ))}
       </section>

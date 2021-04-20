@@ -52,9 +52,9 @@ const StyledGuestProfile = styled.div`
 `;
 
 export function GuestProfile() {
-  const {state: {userObject}} = useLocation()
+  const {state: {userObject}} = useLocation<any>()
 
-  const [guestInfo, setGuestInfo] = useState({})
+  const [guestInfo, setGuestInfo] = useState<any>({})
 
   const [_, setUser] = useContext(UserContext)
   
